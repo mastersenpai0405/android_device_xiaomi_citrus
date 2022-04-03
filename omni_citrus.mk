@@ -18,16 +18,9 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# Inherit from citrus device
-$(call inherit-product, device/xiaomi/citrus/device.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
-$(call inherit-product, vendor/omni/config/gsm.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := citrus
@@ -36,3 +29,10 @@ PRODUCT_BRAND := POCO
 PRODUCT_MODEL := POCO
 PRODUCT_MANUFACTURER := xiaomi
 PRODUCT_RELEASE_NAME := POCO POCO
+
+# Dynamic partition
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Fastbootd
+PRODUCT_PACKAGES +\
+    android.hardware.fastboot@1.0-impl-mock
